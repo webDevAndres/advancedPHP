@@ -6,10 +6,14 @@ function randomNameGenerator ()
         $randomNumber = rand(0,20);
     if ($randomNumber <= 9) 
         {
+        echo $randomNumber;
+        echo "<br>";
         echo "Hello" . " " . $names[$randomNumber];
         }
     else 
         {
+            echo $randomNumber;
+            echo "<br>";
             echo "Name List:";
             echo "<br>";
             foreach($names as $name) {
