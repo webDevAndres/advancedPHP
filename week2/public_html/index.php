@@ -17,6 +17,8 @@ $honeypot = "";
 // set form flag to false
 $validForm = false;
 
+//do a sanitize strings instead
+
 function validateFirstName() {
     global $firstName,$firstNameError,$validForm;
     if (!preg_match("/^[^-\s][a-zA-Z \s-]*$/", $firstName)) {
@@ -34,7 +36,7 @@ function validateLastName() {
     if (!preg_match("/^[^-\s][a-zA-Z \s-]*$/", $lastName)) {
         $lastNameError = "cannot be empty and Special characters not allowed";
         
-$validForm = false;
+        $validForm = false;
     }
     else {
         $lastName = filter_var($lastName, FILTER_SANITIZE_STRING);
