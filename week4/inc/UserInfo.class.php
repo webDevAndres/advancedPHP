@@ -62,8 +62,6 @@ function saveInput($tableName,$inputArray)
     return $inputArray;
 }
 
-
-
 }
 
 class user extends UserLoginInformation
