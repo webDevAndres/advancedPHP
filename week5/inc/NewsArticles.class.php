@@ -8,24 +8,28 @@ class NewsArticles
 
     public $db = null;
 
-    public function __construct()
+     function __construct()
     {
         $this->db = new PDO('mysql:host=localhost;dbname=wdv441_2018;charset=utf8', 'wdv441', 'wdv441');
     }
 
-    public function set($dataArray)
+     function set($dataArray)
     {
         $this->articleData = $dataArray;
     }
 
-    public function sanitize($dataArray)
+     function sanitize($dataArray)
     {
         //sanitize the data based on rules
+        $dataArray['articleTitle'] = filter_var($dataArray['articleTitle'], FILTER_SANITIZE_STRING);
+        $dataArray['articleContent'] = filter_var($dataArray['articleContent'], FILTER_SANITIZE_STRING);
+        $dataArray['articleAuthor'] = filter_var($dataArray['articleAuthor'], FILTER_SANITIZE_STRING);
+        // $dataArray['articleDate'] = filter_var($dataArray['articleDate'], FILTER_SANITIZE_STRING);
 
-        return $this->$dataArray;
+        return $dataArray;
     }
 
-    public function load($articleID)
+     function load($articleID)
     {
 
         $isLoaded = false;
@@ -96,7 +100,7 @@ class NewsArticles
         return $isSaved;
     }
 
-    public function validate()
+     function validate()
     {
         $isValid = true;
 
@@ -107,10 +111,22 @@ class NewsArticles
             $this->errors['articleTitle'] = "Please enter a title";
             $isValid = false;
         }
+        if (empty($this->articleData['articleContent'])) {
+            $this->errors['articleContent'] = "Please enter Content";
+            $isValid = false;
+        }
+        if (empty($this->articleData['articleAuthor'])) {
+            $this->errors['articleAuthor'] = "Please enter an Author";
+            $isValid = false;
+        }
+        if (empty($this->articleData['articleDate'])) {
+            $this->errors['articleDate'] = "Please enter a Date";
+            $isValid = false;
+        }
         return $isValid;
     }
 
-    public function getList()
+     function getList()
     {
         $articleList = array();
 
