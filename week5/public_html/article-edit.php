@@ -19,7 +19,7 @@ if (isset($_POST['save'])) {
     $articleDataArray = $newsArticle->sanitize($articleDataArray);
     $newsArticle->set($articleDataArray);
     //validate
-    if ($newsARticle->validate()) {
+    if ($newsArticle->validate()) {
         //  save
         if ($newsArticle->save()) {
             header("location: article-save-success.php");
@@ -46,27 +46,48 @@ if (isset($_POST['save'])) {
 </head>
 <body>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post">
+
+    <label for="">Title</label>
     <?php if(isset($articleErrorsArray['articleTitle'])) 
     {?>
 
 <div><?php echo $articleErrorsArray['articleTitle']?></div>
 
     <?php } ?>
-    <label for="">Title</label>
-    <input type="text" name="" value="<?php echo (isset($articleDataArray['articleTitle'])); ?>"> <br>
+    <input type="text" name="" value="<?php echo (isset($articleDataArray['articleTitle']) ? $articleDataArray['articleTitle'] : '');?>"> <br>
+
+   
 
     <label for="content">Content</label>
-    <textarea name="articleContent"><?php echo (isset($articleDataArray['articleTitle'])); ?></textarea><br>
+    <?php if(isset($articleErrorsArray['articleContent'])) 
+    {?>
+
+<div><?php echo $articleErrorsArray['articleContent']?></div>
+
+    <?php } ?>
+    <textarea name="articleContent"><?php echo (isset($articleDataArray['articleContent']) ? $articleDataArray['articleContent'] : '');?></textarea><br>
+
 
     <label for="">Author</label>
-    <input type="articleAuthor" name="articleAuthor" value="<?php echo (isset($articleDataArray['articleTitle'])); ?>"><br>
+    <?php if(isset($articleErrorsArray['articleAuthor'])) 
+    {?>
+
+<div><?php echo $articleErrorsArray['articleAuthor']?></div>
+
+    <?php } ?>
+    <input type="articleAuthor" name="articleAuthor" value="<?php echo (isset($articleDataArray['articleAuthor']) ? $articleDataArray['articleAuthor'] : '');?>"><br>
+
 
     <label for="">Date</label>
-    <input type="articleDate" name="articleDate" value="<?php echo (isset($articleDataArray['articleTitle'])); ?>"><br>
+    <?php if(isset($articleErrorsArray['articleDate'])) 
+    {?>
 
+<div><?php echo $articleErrorsArray['articleDate']?></div>
 
+    <?php } ?>
+    <input type="articleDate" name="articleDate" value="<?php echo (isset($articleDataArray['articleDate']) ? $articleDataArray['articleDate'] : '');?>"><br>
 
-    <input type="hidden" name="articleID" value=""><br>
+    <input type="hidden" name="articleID" value="<?php echo (isset($articleDataArray['articleID']) ? $articleDataArray['articleID'] : '');?>"><br>
 
     <input type="submit" name="save" value="Save">
     <input type="reset" name="cancel" value="Cancel">
