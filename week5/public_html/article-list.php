@@ -80,9 +80,8 @@ $articleList = $newsArticle->getList();
     </header>
 
 <table>
-<tr>
-    <th> <a href="article-view.php">View articles</a></th>
-    <th><a href="article-edit.php">Add new article</a></th>
+<tr >
+    <td class="button"><a href="article-edit.php"?>Add new article</a></td>
 </tr>
 
 </table>
@@ -94,7 +93,7 @@ $articleList = $newsArticle->getList();
             <th>Article Content</th>
             <th>Article Author</th>
             <th>Article Date</th>
-            <th>Options</th>
+            <th colspan="2">Options</th>
             
         </tr>
 
@@ -114,13 +113,11 @@ $articleList = $newsArticle->getList();
             </td>
 
             <td class="button">
-                <a href="article-edit.php">Edit</a>
+                <a href="article-edit.php?articleID=<?php echo $articleInfo['articleID'];?>">Edit</a>
             </td>
-            <td>
-                <?php echo $articleInfo['articleID'];?>
-
-            </td>
-           
+            <td class="button">
+                <a href="article-view.php?articleID=<?php echo $articleInfo['articleID'];?>">View</a>
+            </td>       
         </tr>
 
         <?php } ?>
