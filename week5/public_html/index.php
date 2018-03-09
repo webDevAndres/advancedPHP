@@ -22,7 +22,7 @@ $newsArticle = new NewsArticles();
 
 $newsArticle->articleData['articleTitle'] = "Test Article 3a";
 
-var_dump($newsArticle->save());
+// var_dump($newsArticle->save());
 
 // var_dump($newsArticle);
 
