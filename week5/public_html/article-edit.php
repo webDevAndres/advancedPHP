@@ -54,7 +54,8 @@ if (isset($_POST['save'])) {
 <div><?php echo $articleErrorsArray['articleTitle']?></div>
 
     <?php } ?>
-    <input type="text" name="" value="<?php echo (isset($articleDataArray['articleTitle']) ? $articleDataArray['articleTitle'] : '');?>"> <br>
+
+    <input type="text" name="articleTitle" value="<?php echo (isset($articleDataArray['articleTitle']) ? $articleDataArray['articleTitle'] : '');?>"> <br>
 
    
 
