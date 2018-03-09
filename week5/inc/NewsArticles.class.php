@@ -21,10 +21,10 @@ class NewsArticles
      function sanitize($dataArray)
     {
         //sanitize the data based on rules
-        $dataArray['articleTitle'] = filter_var($dataArray['articleTitle'], FILTER_SANITIZE_STRING);
+        // $dataArray['articleTitle'] = filter_var($dataArray['articleTitle'], FILTER_SANITIZE_STRING);
         $dataArray['articleContent'] = filter_var($dataArray['articleContent'], FILTER_SANITIZE_STRING);
         $dataArray['articleAuthor'] = filter_var($dataArray['articleAuthor'], FILTER_SANITIZE_STRING);
-        // $dataArray['articleDate'] = filter_var($dataArray['articleDate'], FILTER_SANITIZE_STRING);
+        $dataArray['articleDate'] = filter_var($dataArray['articleDate'], FILTER_SANITIZE_STRING);
 
         return $dataArray;
     }
@@ -102,26 +102,35 @@ class NewsArticles
 
      function validate()
     {
-        $isValid = true;
+        $isValid = false;
 
         // if an error, store to errors using column name as key
 
         //validate the data elements and article data property
         if (empty($this->articleData['articleTitle'])) {
-            $this->errors['articleTitle'] = "Please enter a title";
-            $isValid = false;
+            $this->errors['articleTitle'] = "Please enter Content";
         }
         if (empty($this->articleData['articleContent'])) {
             $this->errors['articleContent'] = "Please enter Content";
-            $isValid = false;
         }
         if (empty($this->articleData['articleAuthor'])) {
             $this->errors['articleAuthor'] = "Please enter an Author";
-            $isValid = false;
-        }
+        } 
+        
+        $year = substr($this->articleData['articleDate'], 0, 4);
+        $month = substr($this->articleData['articleDate'], 5,2);
+        $day = substr($this->articleData['articleDate'], 8,2);
+
         if (empty($this->articleData['articleDate'])) {
             $this->errors['articleDate'] = "Please enter a Date";
-            $isValid = false;
+        }
+        elseif (!checkdate($month,$day,$year)) {
+            $this->errors['articleDate'] = "Enter a valid date (yyyy-mm-dd)";
+            
+        }
+
+        if(empty($this->errors)){
+            $isValid = true;
         }
         return $isValid;
     }
