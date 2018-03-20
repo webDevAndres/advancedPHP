@@ -135,13 +135,30 @@ class NewsArticles
         return $isValid;
     }
 
-     function getList()
+     function getList($sortColumn = null, $sortDirection = null, $filterColumn = null, $filterText = null)
     {
         $articleList = array();
+        $sql = "SELECT * FROM newsarticles ";
 
-        $stmt = $this->db->query("SELECT * FROM newsarticles");
+        if(!is_null($filterColumn) && !is_null($filterText))
+        {
+            $sql .= "WHERE " . $filterColumn . " LIKE ?";
+        }
+
+        if(!is_null($sortColumn))
+        {
+            $sql .= "ORDER BY " . $sortColumn;
+            if(!is_null($sortDirection))
+            {
+                $sql .= " " . $sortDirection;
+            }
+        }
+        
+        $stmt = $this->db->prepare($sql);
 
         if ($stmt) {
+            $stmt->execute(array('%' . $filterText . '%'));
+            
             $articleList = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
