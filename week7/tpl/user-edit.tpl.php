@@ -59,7 +59,7 @@
         <input type="user_level" name="user_level" value="<?php echo (isset($userDataArray['user_level']) ? $userDataArray['user_level'] : '');?>">
         <br>
 
-        <input type="text" name="user_id" value="<?php echo (isset($userDataArray['user_id']) ? $userDataArray['user_id'] : '');?>">
+        <input type="hidden" name="user_id" value="<?php echo (isset($userDataArray['user_id']) ? $userDataArray['user_id'] : '');?>">
         <br>
 
         <input type="submit" name="save" value="Save">
