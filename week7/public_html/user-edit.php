@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../inc/Users.class.php';
+require_once('../inc/Users.class.php');
 
 $user = new Users();
 
