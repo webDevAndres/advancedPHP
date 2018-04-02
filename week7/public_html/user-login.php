@@ -19,10 +19,9 @@ if (isset($_REQUEST['login']))
 
     if($userID)
     {
-        echo "user ID matches a username and password";
+        // echo "user ID matches a username and password";
         $_SESSION["userID"] = $userID;
-        header("location: user-edit.php");
-        exit;
+        header('location: user-edit.php');
     }
     else
     {
@@ -31,5 +30,3 @@ if (isset($_REQUEST['login']))
 }
 require_once('../tpl/user-login.tpl.php');
 ?>
-
-
