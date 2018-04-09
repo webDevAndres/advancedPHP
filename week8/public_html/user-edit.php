@@ -32,7 +32,8 @@ if (isset($_POST['save'])) {
         //  save
         if ($user->save()) 
         {
-            header("location: article-save-success.php");
+            $user->saveImage($_FILES['profileImage']);
+            header("location: user-list.php");
             exit;
         } 
         else 
