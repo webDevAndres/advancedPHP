@@ -27,7 +27,7 @@ class Users extends Base
 
         if (isset($dataArray['user_level']))
         {
-            $this->$dataArray['user_level'] = filter_var($dataArray['user_level'], FILTER_SANITIZE_STRING);
+            $dataArray['user_level'] = filter_var($dataArray['user_level'], FILTER_SANITIZE_NUMBER_INT);
         }
         
 
@@ -84,7 +84,21 @@ class Users extends Base
     }
 
     function saveImage($imageFileData)
-    {
+    {     
+        $profileImage = dirname(__FILE__) . "/../public_html/images/profile_" . $this->data[$this->keyField] . ".jpg";
+        //check to see if the image exists and put it in a variable
+        if (file_exists($profileImage))
+        {
+            echo "hi";
+        }
+        else
+        {
+
+        }
+        // check the size of the image
+        // check the dimension of image
+        // check the type of image
+
         move_uploaded_file
         (           
             $imageFileData['tmp_name'], 
