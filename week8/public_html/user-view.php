@@ -12,5 +12,6 @@ if (isset($_REQUEST['user_id']) && $_REQUEST['user_id'] > 0)
     $user->load($_REQUEST['user_id']);
     $userDataArray = $user->data;
 }
+
 require_once('../tpl/user-view.tpl.php');
 ?>
