@@ -13,13 +13,26 @@
             height: 100vh;
             text-align: center;
         }
+
+        img {
+            width: 10%;
+            height: auto;
+            padding: 5px;
+            background-color: white;
+            border: 2px solid black;
+        }
     </style>
 
 </head>
 
 <body>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data">
-
+    <label for="profileImage">Profile Image</label><br>
+        <?php echo '<img src="../public_html/images/profile_'.$userDataArray['user_id'].'.jpg" alt="profile Image">'; ?>
+        <br>
+        <p>Change profile image <input type="file" name="profileImage"/></p>
+        <br>
+        <br>
         <label for="">user name</label>
         <?php if(isset($userErrorArray['userName'])) 
     {?>
@@ -57,8 +70,6 @@
 
         <?php } ?>
         <input type="user_level" name="user_level" value="<?php echo (isset($userDataArray['user_level']) ? $userDataArray['user_level'] : '');?>">
-        <br><br>
-        file: <input type="file" name="profileImage"/>
             <br>
         <input type="hidden" name="user_id" value="<?php echo (isset($userDataArray['user_id']) ? $userDataArray['user_id'] : '');?>">
         <br>
