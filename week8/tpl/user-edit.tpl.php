@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post">
+    <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data">
 
         <label for="">user name</label>
         <?php if(isset($userErrorArray['userName'])) 
@@ -57,11 +57,11 @@
 
         <?php } ?>
         <input type="user_level" name="user_level" value="<?php echo (isset($userDataArray['user_level']) ? $userDataArray['user_level'] : '');?>">
-        <br>
-
+        <br><br>
+        file: <input type="file" name="profileImage"/>
+            <br>
         <input type="hidden" name="user_id" value="<?php echo (isset($userDataArray['user_id']) ? $userDataArray['user_id'] : '');?>">
         <br>
-
         <input type="submit" name="save" value="Save">
         <input type="submit" name="cancel" value="Cancel">
     </form>
