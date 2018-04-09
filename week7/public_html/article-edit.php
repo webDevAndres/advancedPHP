@@ -4,11 +4,12 @@ require_once '../inc/NewsArticles.class.php';
 $newsArticle = new NewsArticles();
 
 $articleDataArray = array();
+$articleErrorsArray = array();
 
 // load article if we have it
 if (isset($_REQUEST['articleID']) && $_REQUEST['articleID'] > 0) {
     $newsArticle->load($_REQUEST['articleID']);
-    $articleDataArray = $newsArticle->articleData;
+    $articleDataArray = $newsArticle->data;
 }
 
 if (isset($_POST['cancel']))
@@ -21,7 +22,6 @@ if (isset($_POST['cancel']))
 if (isset($_POST['save'])) {
     $articleDataArray = $_POST;
     //sanitize
-
     $articleDataArray = $newsArticle->sanitize($articleDataArray);
     $newsArticle->set($articleDataArray);
     //validate
@@ -30,6 +30,8 @@ if (isset($_POST['save'])) {
         //  save
         if ($newsArticle->save()) 
         {
+            $newsArticle->saveImage($_FILES['article_image']);
+
             header("location: article-save-success.php");
             exit;
         } 
@@ -41,7 +43,7 @@ if (isset($_POST['save'])) {
     else 
     {
         $articleErrorsArray = $newsArticle->errors;
-        $articleDataArray = $newsArticle->articleData;
+        $articleDataArray = $newsArticle->data;
     }
 
 }
