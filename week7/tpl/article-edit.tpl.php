@@ -20,7 +20,7 @@
 <body>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post">
 
-        <label for="">Title</label>
+        <label for="articleTitle">Title</label>
         <?php if(isset($articleErrorsArray['articleTitle'])) 
     {?>
 
@@ -43,9 +43,7 @@
         </div>
 
         <?php } ?>
-        <textarea name="articleContent">
-            <?php echo (isset($articleDataArray['articleContent']) ? $articleDataArray['articleContent'] : '');?>
-        </textarea>
+        <textarea name="articleContent"><?php echo (isset($articleDataArray['articleContent']) ? $articleDataArray['articleContent'] : '');?></textarea>
         <br>
 
 
