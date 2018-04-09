@@ -7,18 +7,15 @@ $user = new Users();
 $userDataArray = array();
 
 $userErrorArray = array();
-
-$_REQUEST['user_id'] =  $_SESSION["userID"];
-
-// load article if we have it
+// load user if we have it
 if (isset($_REQUEST['user_id']) && $_REQUEST['user_id'] > 0) {
     $user->load($_REQUEST['user_id']);
-    $userDataArray = $user->userData;
+    $userDataArray = $user->data;
 }
 
 if (isset($_POST['cancel']))
 {
-    header("location: article-list.php");
+    header("location: user-list.php");
     exit;
 }
 
@@ -41,13 +38,12 @@ if (isset($_POST['save'])) {
         else 
         {
             $userErrorArray[] = "Save failed";
-            echo "FAILED FAILED FAILED";
         }
     } 
     else 
     {
         $userErrorArray = $user->errors;
-        $userDataArray = $user->userData;
+        $userDataArray = $user->data;
     }
 
 }
