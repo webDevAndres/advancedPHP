@@ -16,12 +16,11 @@ if (isset($_REQUEST['login']))
     $user->set($userDataArray);
 
     $userID = $user ->checkLogin($userDataArray['userName'], $userDataArray['password']);
-
     if($userID)
     {
-        // echo "user ID matches a username and password";
-        $_SESSION["userID"] = $userID;
-        header('location: user-edit.php');
+       
+        $_SESSION["user_id"] = $userID;
+        header('location: user-list.php');
     }
     else
     {
