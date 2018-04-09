@@ -82,7 +82,19 @@ class Users extends Base
 
             return $checkUserID;
     }
+
+    function saveImage($imageFileData)
+    {
+        move_uploaded_file
+        (           
+            $imageFileData['tmp_name'], 
+            dirname(__FILE__) . "/../public_html/images/profile_" . $this->data[$this->keyField] . ".jpg"
+        );
+    }
 }
+
+
+
 
 class Users2
 {
