@@ -22,12 +22,7 @@ class Base
         $this->data = $dataArray;
     }
 
-     function sanitize($dataArray)
-    {
-        // sanitize data based on rules
-
-        return $dataArray;
-    }
+    
 
      function load($id)
     {
