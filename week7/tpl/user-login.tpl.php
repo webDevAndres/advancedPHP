@@ -20,7 +20,7 @@
 
 <body>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post">
-
+    <p>Guest password and username: guest</p>
         <label for="">user name</label>
         <?php if(isset($userErrorArray['userName'])) 
     {?>

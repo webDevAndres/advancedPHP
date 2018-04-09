@@ -44,7 +44,7 @@
 
         <?php } ?>
 
-        <input type="text" name="password" value="<?php echo (isset($userDataArray['password']) ? $userDataArray['password'] : '');?>">
+        <input type="password" name="password" value="<?php echo (isset($userDataArray['password']) ? $userDataArray['password'] : '');?>">
         <br>
 
         <label for="">User Level</label>
