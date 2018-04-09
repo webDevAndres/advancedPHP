@@ -1,6 +1,90 @@
 <?php
+require_once('Base.class.php');
 
-class Users
+class Users extends Base
+{
+     function __construct()
+    {
+      // still run parent functionality
+      parent::__construct();
+        
+      $this->tableName = "users";
+      $this->keyField = "user_id";
+      $this->columnNames = array
+      (
+         "userName",
+         "password",
+         "user_level"            
+      );
+    }
+
+
+     function sanitize($dataArray)
+    {
+        //sanitize the data based on rules
+        $dataArray['userName'] = filter_var($dataArray['userName'], FILTER_SANITIZE_STRING);
+        $dataArray['password'] = filter_var($dataArray['password'], FILTER_SANITIZE_STRING);
+
+        if (isset($dataArray['user_level']))
+        {
+            $this->$dataArray['user_level'] = filter_var($dataArray['user_level'], FILTER_SANITIZE_STRING);
+        }
+        
+
+        return $dataArray;
+    }
+
+    function validate()
+    {
+        $isValid = false;
+
+        // if an error, store to errors using column name as key
+
+        //validate the data elements and article data property
+        if (empty($this->data['userName'])) {
+            $this->errors['userName'] = "Please enter a username";
+        }
+        if (empty($this->data['password'])) {
+            $this->errors['password'] = "Please enter a password";
+        }
+        if (empty($this->data['user_level'])) {
+            $this->errors['user_level'] = "Please enter a user level";
+        } 
+
+        if(empty($this->errors)){
+            $isValid = true;
+        }
+        return $isValid;
+    }
+
+
+
+    function checkLogin ($userName, $password) 
+    {
+        $checkUserID = null;
+        $sql = "SELECT " . $this->keyField . " FROM " . $this->tableName . " WHERE userName = ? && password = ?";
+       
+        $stmt = $this->db->prepare($sql);
+
+            $stmt->execute(array($userName, $password));
+          
+            $checkUserID = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($checkUserID == false) 
+            {
+                $this->errors['password'] = "password doesn't match username";
+            }
+
+            else 
+            {
+                $checkUserID = $checkUserID['user_id'];
+               
+            }
+
+            return $checkUserID;
+    }
+}
+
+class Users2
 {
     // using var is the same as public
     public $userData = array();
@@ -101,28 +185,7 @@ class Users
         return $isSaved;
     }
 
-     function validate()
-    {
-        $isValid = false;
 
-        // if an error, store to errors using column name as key
-
-        //validate the data elements and article data property
-        if (empty($this->userData['userName'])) {
-            $this->errors['userName'] = "Please enter a username";
-        }
-        if (empty($this->userData['password'])) {
-            $this->errors['password'] = "Please enter a password";
-        }
-        if (empty($this->userData['user_level'])) {
-            $this->errors['user_level'] = "Please enter a user level";
-        } 
-
-        if(empty($this->errors)){
-            $isValid = true;
-        }
-        return $isValid;
-    }
 
      function getList($sortColumn = null, $sortDirection = null, $filterColumn = null, $filterText = null)
     {
@@ -177,3 +240,4 @@ class Users
             return $checkUserID;
     }
 }
+?>
