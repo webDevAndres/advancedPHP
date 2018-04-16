@@ -5,8 +5,8 @@ require_once('../inc/Users.class.php');
 $user = new Users();
 
 $userDataArray = array();
-
 $userErrorArray = array();
+
 // load user if we have it
 if (isset($_REQUEST['user_id']) && $_REQUEST['user_id'] > 0) {
     $user->load($_REQUEST['user_id']);
@@ -22,10 +22,11 @@ if (isset($_POST['cancel']))
 // apply the data if we have new data
 if (isset($_POST['save'])) {
     $userDataArray = $_POST;
-    //sanitize
 
+    //sanitize
     $userDataArray = $user->sanitize($userDataArray);
     $user->set($userDataArray);
+    
     //validate
     if ($user->validate()) 
     {
