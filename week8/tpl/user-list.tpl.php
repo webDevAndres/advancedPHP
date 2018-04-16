@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>article List</title>
+    <title>User List</title>
 
     <style>
         body {
@@ -62,7 +62,7 @@
     <header>
         <h2>Users</h2>
     </header>
-    
+    <a href="user-edit.php"><button class="button">Add new user</button></a>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="GET">
         <label for="filterColumn">Search</label>
         <select name="filterColumn">
@@ -76,8 +76,6 @@
     </form>
 
     <table>
-
-        <tr>
             <th>Username&nbsp;-&nbsp;
                 <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=ASC">A</a>&nbsp;
                 <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=DESC">D</a>
