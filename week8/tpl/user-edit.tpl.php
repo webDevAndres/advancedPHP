@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>article edit</title>
+    <title>user edit</title>
     <style>
         body {
             background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
@@ -28,7 +28,15 @@
 <body>
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data">
     <label for="profileImage">Profile Image</label><br>
-        <?php echo '<img src="../public_html/images/profile_'.$userDataArray['user_id'].'.jpg" alt="profile Image">'; ?>
+    <?php if (file_exists(dirname(__FILE__) . "/../public_html/images/profile_" . isset($userDataArray['user_id']) . ".jpg"))
+    { ?>
+        <img src="images/profile_<?php echo $userDataArray['user_id'] . '.jpg'; ?>" alt="profile Image">
+           
+     <?php } else
+    { ?>
+        <img src="images/defaultProfile.jpg" alt="profile Image">
+       
+   <?php } ?> 
         <br>
         <p>Change profile image <input type="file" name="profileImage"/></p>
         <br>
