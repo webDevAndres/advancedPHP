@@ -54,27 +54,28 @@
             background-color: #4CAF50;
             color: white;
         }
-
-        /* .weatherWidget {
-            width:100%;
-            height:auto;
-            border: 2px solid blue;
-            overflow: scroll;
-        } */
     </style>
 
 </head>
 
 <body>
     <header>
-        <h2>Users</h2>
+        <h2>News Articles</h2>
     </header>
-    
+
+
+
+    <p>
+        <a href="article-edit.php" ?>Add new article</a>
+    </p>
+
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="GET">
         <label for="filterColumn">Search</label>
         <select name="filterColumn">
-            <option value="userName">Username</option>
-            <option value="user_level">User level</option>
+            <option value="articleTitle">Article Title</option>
+            <option value="articleAuthor">Article Author</option>
+            <option value="articleDate">Article Date</option>
+            <option value="articleContent">Article Content</option>
             &nbsp;
             <input type="text" name="filterText"> &nbsp;
             <input type="submit" name="filter" value="Search">
@@ -85,49 +86,44 @@
     <table>
 
         <tr>
-            <th>Username&nbsp;-&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=ASC">A</a>&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=DESC">D</a>
+            <th>Article Title&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleTitle&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleTitle&sortDirection=DESC">D</a>
             </th>
-            <th>user_level&nbsp;-&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=user_level&sortDirection=ASC">A</a>&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=user_level&sortDirection=DESC">D</a>
+            <th>Article Author&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleAuthor&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleAuthor&sortDirection=DESC">D</a>
+            </th>
+            <th>Article Date&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleDate&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=articleDate&sortDirection=DESC">D</a>
             </th>
             <th colspan="2">Options</th>
 
         </tr>
 
-        <?php foreach ($userList as $userData) 
+        <?php foreach ($articleList as $articleData) 
         { ?>
         <tr>
             <td>
-                <?php echo $userData['userName'];?>
+                <?php echo $articleData['articleTitle'];?>
             </td>
             <td>
-                <?php echo $userData['user_level'];?>
+                <?php echo $articleData['articleAuthor'];?>
+            </td>
+            <td>
+                <?php echo $articleData['articleDate'];?>
             </td>
 
             <td class="button">
-                <a href="user-edit.php?user_id=<?php echo $userData['user_id'];?>">Edit</a>
+                <a href="article-edit.php?articleID=<?php echo $articleData['articleID'];?>">Edit</a>
             </td>
             <td class="button">
-                <a href="user-view.php?user_id=<?php echo $userData['user_id'];?>">view</a>
+                <a href="article-view.php?articleID=<?php echo $articleData['articleID'];?>">View</a>
             </td>
         </tr>
         <?php } ?>
     </table>
-
-    <!-- weather widget -->
-    <div class="weatherWidget">
-    <h2>Weather</h2>
-    <?php
-    for ($x = 0; $x<= 1; $x++) 
-    {
-    echo 'Day: ' . $weatherWidget['Days'][$x]['date'] .' Max temp: ' . $weatherWidget['Days'][$x]['temp_max_f'] . ' ' .$weatherWidget['Days'][$x]['Timeframes'][$x]['wx_desc'] . '<br>';
-    }
-    ?>
-    </div>
-   
 
 </body>
 

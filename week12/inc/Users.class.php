@@ -85,21 +85,25 @@ class Users extends Base
 
     function saveImage($imageFileData)
     {     
-      $isVaild = false;
+        $profileImage = dirname(__FILE__) . "/../public_html/images/profile_" . $this->data[$this->keyField] . ".jpg";
+        //check to see if the image exists and put it in a variable
+        if (file_exists($profileImage))
+        {
+            echo "hi";
+        }
+        else
+        {
 
+        }
         // check the size of the image
         // check the dimension of image
         // check the type of image
-        if(empty($this->errors)){
-            $isValid = true;
-        }
 
         move_uploaded_file
         (           
             $imageFileData['tmp_name'], 
             dirname(__FILE__) . "/../public_html/images/profile_" . $this->data[$this->keyField] . ".jpg"
         );
-       
     }
 }
 

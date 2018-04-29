@@ -54,27 +54,27 @@
             background-color: #4CAF50;
             color: white;
         }
-
-        /* .weatherWidget {
-            width:100%;
-            height:auto;
-            border: 2px solid blue;
-            overflow: scroll;
-        } */
     </style>
 
 </head>
 
 <body>
     <header>
-        <h2>Users</h2>
+        <h2>cms Data List</h2>
     </header>
-    
+
+
+
+    <p>
+        <a href="cms-data-edit.php" ?>Add new CMS data</a>
+    </p>
+
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="GET">
         <label for="filterColumn">Search</label>
         <select name="filterColumn">
-            <option value="userName">Username</option>
-            <option value="user_level">User level</option>
+            <option value="page_title">page title</option>
+            <option value="header">header</option>
+            <option value="url_key">url key</option>
             &nbsp;
             <input type="text" name="filterText"> &nbsp;
             <input type="submit" name="filter" value="Search">
@@ -85,49 +85,44 @@
     <table>
 
         <tr>
-            <th>Username&nbsp;-&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=ASC">A</a>&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=userName&sortDirection=DESC">D</a>
+            <th>page title&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=page_title&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=page_title&sortDirection=DESC">D</a>
             </th>
-            <th>user_level&nbsp;-&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=user_level&sortDirection=ASC">A</a>&nbsp;
-                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=user_level&sortDirection=DESC">D</a>
+            <th>Header&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=header&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=header&sortDirection=DESC">D</a>
+            </th>
+            <th>URL Key&nbsp;-&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=url_key&sortDirection=ASC">A</a>&nbsp;
+                <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=url_key&sortDirection=DESC">D</a>
             </th>
             <th colspan="2">Options</th>
 
         </tr>
 
-        <?php foreach ($userList as $userData) 
+        <?php foreach ($cmsDataList as $cmsPageData) 
         { ?>
         <tr>
             <td>
-                <?php echo $userData['userName'];?>
+                <?php echo $cmsPageData['page_title'];?>
             </td>
             <td>
-                <?php echo $userData['user_level'];?>
+                <?php echo $cmsPageData['header'];?>
+            </td>
+            <td>
+                <?php echo $cmsPageData['url_key'];?>
             </td>
 
             <td class="button">
-                <a href="user-edit.php?user_id=<?php echo $userData['user_id'];?>">Edit</a>
+                <a href="cms-data-edit.php?cms_data_id=<?php echo $cmsPageData['cms_data_id'];?>">Edit</a>
             </td>
             <td class="button">
-                <a href="user-view.php?user_id=<?php echo $userData['user_id'];?>">view</a>
+                <a href="cms-data-view.php?cms_data_id=<?php echo $cmsPageData['cms_data_id'];?>">View</a>
             </td>
         </tr>
         <?php } ?>
     </table>
-
-    <!-- weather widget -->
-    <div class="weatherWidget">
-    <h2>Weather</h2>
-    <?php
-    for ($x = 0; $x<= 1; $x++) 
-    {
-    echo 'Day: ' . $weatherWidget['Days'][$x]['date'] .' Max temp: ' . $weatherWidget['Days'][$x]['temp_max_f'] . ' ' .$weatherWidget['Days'][$x]['Timeframes'][$x]['wx_desc'] . '<br>';
-    }
-    ?>
-    </div>
-   
 
 </body>
 
