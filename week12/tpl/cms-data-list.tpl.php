@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>article List</title>
+    <title>cms data List</title>
 
     <style>
         body {
@@ -60,13 +60,13 @@
 
 <body>
     <header>
-        <h2>cms Data List</h2>
+        <h2>CMS Data List</h2>
     </header>
 
 
 
     <p>
-        <a href="cms-data-edit.php" ?>Add new CMS data</a>
+        <a href="cms-data-edit.php">Add new CMS data</a>
     </p>
 
     <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="GET">
@@ -85,7 +85,7 @@
     <table>
 
         <tr>
-            <th>page title&nbsp;-&nbsp;
+            <th>Page title&nbsp;-&nbsp;
                 <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=page_title&sortDirection=ASC">A</a>&nbsp;
                 <a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?sortColumn=page_title&sortDirection=DESC">D</a>
             </th>
@@ -118,7 +118,7 @@
                 <a href="cms-data-edit.php?cms_data_id=<?php echo $cmsPageData['cms_data_id'];?>">Edit</a>
             </td>
             <td class="button">
-                <a href="cms-data-view.php?cms_data_id=<?php echo $cmsPageData['cms_data_id'];?>">View</a>
+            <a href="cms-data-view.php?cms_url_key= <?php echo $cmsPageData['url_key'];?>">View </a>
             </td>
         </tr>
         <?php } ?>

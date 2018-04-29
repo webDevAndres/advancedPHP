@@ -1,5 +1,5 @@
 <?php
-require_once '../inc/cmsData.class.php';
+require_once('../inc/cmsData.class.php');
 
 $cmsData = new cmsData();
 
@@ -7,14 +7,14 @@ $cmsDataArray = array();
 $cmsErrorsArray = array();
 
 // load cms if we have it
-if (isset($_REQUEST['cmsID']) && $_REQUEST['cmsID'] > 0) {
-    $newscms->load($_REQUEST['cmsID']);
-    $cmsDataArray = $newscms->data;
+if (isset($_REQUEST['cms_data_id']) && $_REQUEST['cms_data_id'] > 0) {
+    $cmsData->load($_REQUEST['cms_data_id']);
+    $cmsDataArray = $cmsData->data;
 }
 
 if (isset($_POST['cancel']))
 {
-    header("location: cms-list.php");
+    header("location: cms-data-list.php");
     exit;
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST['save'])) {
         {
             $cmsData->saveImage($_FILES['cms_data_image']);
 
-            header("location: cms-save-success.php");
+            header("location: cms-data-save-success.php");
             exit;
         } 
         else 
@@ -47,6 +47,6 @@ if (isset($_POST['save'])) {
     }
 
 }
-require_once('../tpl/cms-edit.tpl.php');
+require_once('../tpl/cms-data-edit.tpl.php');
 
 ?>

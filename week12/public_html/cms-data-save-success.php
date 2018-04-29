@@ -1,3 +1,3 @@
 <?php
-require_once('../tpl/article-save-success.tpl.php');
+require_once('../tpl/cms-data-save-success.tpl.php');
 ?>
