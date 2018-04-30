@@ -10,5 +10,7 @@ $cmsDataList = $cmsData->getList(
     (isset($_GET['filterText']) ? $_GET['filterText'] : null)
 );
 
+
+
 require_once('../tpl/cms-data-list.tpl.php');
 ?>
