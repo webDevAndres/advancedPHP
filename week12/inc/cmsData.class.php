@@ -66,17 +66,15 @@ class cmsData extends Base {
 
     function loadFromUrlKey($url_key)
     {
-       
         $isLoaded = false;
         //load info from database
-        $stmt = $this->db->prepare("SELECT cms_data_id FROM " . $this->tableName ." WHERE " . $url_key ."=?");
+        $stmt = $this->db->prepare("SELECT cms_data_id FROM " . $this->tableName ." WHERE url_key=?");
         $stmt->execute(array($url_key));
-
-        if ($stmt->rowCount() == 1) {
-            $cms_data_id = $stmt->fetch(PDO::FETCH_ASSOC);
-            $this->set($cms_data_id);
+        $cms_data_id = $stmt->fetch(PDO::FETCH_ASSOC);    
+         
             $isLoaded = true;
-        }
+
+            // var_dump($cms_data_id); die;
         return $cms_data_id;
     }
 }

@@ -118,7 +118,7 @@
                 <a href="cms-data-edit.php?cms_data_id=<?php echo $cmsPageData['cms_data_id'];?>">Edit</a>
             </td>
             <td class="button">
-            <a href="cms-data-view.php?cms_url_key= <?php echo $cmsPageData['url_key'];?>">View </a>
+            <a href="cms-data-view.php?cms_url_key=<?php echo $cmsPageData['url_key'];?>">View </a>
             </td>
         </tr>
         <?php } ?>

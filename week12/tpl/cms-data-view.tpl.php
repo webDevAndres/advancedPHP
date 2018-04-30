@@ -18,7 +18,12 @@
 
 </head>
 <body>
-
+<?php if (file_exists(dirname(__FILE__) . "/../public_html/images/cms_data_" . $cmsDataArray['cms_data_id'] . ".jpg"))
+        { ?>
+            <div id="banner">
+                <img src="images/cms_data_<?php echo $cmsDataArray['cms_data_id'] . ".jpg"; ?>" width="300"/>
+            </div>
+        <?php }?>     
 
         <h1><?php echo (isset($cmsDataArray['header']) ? $cmsDataArray['header'] : '') ?></h1>
         <div>
